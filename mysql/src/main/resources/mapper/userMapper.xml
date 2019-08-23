@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.jun.mysql.dao.UserDao">
+
+    <insert id="insert" parameterType="user">
+        insert into user_partition (id,deptno, name, age, sex, comm, salary, birth, description)
+        values (#{id}, #{deptno}, #{name}, #{age}, #{sex}, #{comm}, #{salary}, #{birth}, #{description})
+    </insert>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into user_partition (id,deptno, name, age, sex, comm, salary, birth, description) values
+        <foreach collection="list" item="item" index="index" separator=",">
+           (#{item.id}, #{item.deptno},#{item.name}, #{item.age},#{item.sex}, #{item.comm},#{item.salary}, #{item.birth}, #{item.description})
+        </foreach>
+    </insert>
+
+</mapper>
